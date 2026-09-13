@@ -1,0 +1,119 @@
+{
+  "name": "claude-usage-bar",
+  "displayName": "Claude Usage Bar",
+  "description": "Shows Claude plan usage (5-hour session, weekly all models, weekly per-model) in the VS Code status bar.",
+  "version": "0.2.0",
+  "publisher": "planken",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claudeUsageBar.refresh",
+        "title": "Refresh",
+        "category": "Claude Usage",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "claudeUsageBar.openUsagePage",
+        "title": "Open Usage Page",
+        "category": "Claude Usage",
+        "icon": "$(link-external)"
+      }
+    ],
+    "configuration": {
+      "title": "Claude Usage Bar",
+      "properties": {
+        "claudeUsageBar.refreshIntervalMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "description": "How often to poll the usage endpoint."
+        },
+        "claudeUsageBar.warnAtPercent": {
+          "type": "number",
+          "default": 80,
+          "description": "Highlight the status bar item (warning colour) when any limit reaches this percentage."
+        },
+        "claudeUsageBar.errorAtPercent": {
+          "type": "number",
+          "default": 95,
+          "description": "Highlight the status bar item (error colour) when any limit reaches this percentage."
+        },
+        "claudeUsageBar.showStatusBarItem": {
+          "type": "boolean",
+          "default": true,
+          "description": "Also show the compact summary in the status bar."
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "claudeUsageBar.view",
+          "name": "Claude Usage",
+          "icon": "$(pulse)",
+          "contextualTitle": "Claude Usage"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "claudeUsageBar.refresh",
+          "when": "view == claudeUsageBar.view",
+          "group": "navigation@1"
+        },
+        {
+          "command": "claudeUsageBar.openUsagePage",
+          "when": "view == claudeUsageBar.view",
+          "group": "navigation@2"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JPlanken/claude-usage-bar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JPlanken/claude-usage-bar/issues"
+  },
+  "homepage": "https://github.com/JPlanken/claude-usage-bar#readme",
+  "keywords": [
+    "claude",
+    "claude code",
+    "anthropic",
+    "usage",
+    "rate limit",
+    "status bar"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e24",
+    "theme": "dark"
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npm run compile && vsce package --no-dependencies",
+    "install-local": "npm run package && code --install-extension claude-usage-bar-0.2.0.vsix --force",
+    "install-vscode": "npm run package && \"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --install-extension claude-usage-bar-0.2.0.vsix --force"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.5.0"
+  }
+}
