@@ -66,7 +66,7 @@ Commands: `Claude Usage: Refresh`, `Claude Usage: Open Usage Page`.
 ### VS Code Marketplace (one-time setup)
 
 1. Sign in at [Azure DevOps](https://dev.azure.com) with a Microsoft account and create an organisation if you have none. The Marketplace uses Azure DevOps for authentication only.
-2. Create a Personal Access Token: user menu, Personal access tokens, New token. Organisation: **All accessible organizations**. Scopes: **Marketplace: Manage**. Store it in Doppler, never in the repo.
+2. Create a Personal Access Token: user menu, Personal access tokens, New token. Organisation: **All accessible organizations**. Scopes: **Marketplace: Manage**. Store it in Doppler with `doppler secrets set VSCE_PAT` from the repo root (bound to `claude-usage-bar/prd`), never in the repo.
 3. Create the publisher at [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage). The publisher ID must equal the `publisher` field in `package.json` (`planken`, unclaimed as of 2026-09-13). The display name can differ.
 4. Make the GitHub repo public, or the Marketplace listing links will 404: `gh repo edit JPlanken/claude-usage-bar --visibility public`.
 
@@ -75,13 +75,12 @@ Commands: `Claude Usage: Refresh`, `Claude Usage: Open Usage Page`.
 From the repo root:
 
 ```bash
-npx vsce login planken          # paste the PAT once; stored in the OS keychain
-npm version minor               # bumps package.json, commits, tags vX.Y.Z
-npx vsce publish --no-dependencies
+npm version minor                                   # bumps package.json, commits, tags vX.Y.Z
+doppler run -- npx vsce publish --no-dependencies   # reads VSCE_PAT from Doppler
 git push --follow-tags
 ```
 
-Or let CI do it: add the PAT as the `VSCE_PAT` repository secret (`gh secret set VSCE_PAT`), then `npm version minor && git push --follow-tags`. The workflow in `.github/workflows/release.yml` publishes on any `v*` tag and attaches the `.vsix` to a GitHub release.
+Or let CI do it: add the PAT as the `VSCE_PAT` repository secret (`doppler secrets get VSCE_PAT --plain | gh secret set VSCE_PAT`), then `npm version minor && git push --follow-tags`. The workflow in `.github/workflows/release.yml` publishes on any `v*` tag and attaches the `.vsix` to a GitHub release.
 
 ### Open VSX (for Cursor and VSCodium)
 
