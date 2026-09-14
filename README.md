@@ -21,13 +21,22 @@
 
 ## Install
 
-```bash
-cd /Users/jonathanvanderplanken/Developer/JP-Github/tools/claude-usage-bar
-npm install
-npm run install-local
+From the Marketplace: search for **Claude Usage Bar** in the Extensions view, or run
+
+```
+ext install planken.claude-usage-bar
 ```
 
-`install-local` uses whatever `code` resolves to on your PATH (on this machine that is Cursor). For VS Code proper use `npm run install-vscode`, which calls the CLI inside the app bundle. Then reload the window (`Developer: Reload Window`).
+From source:
+
+```bash
+git clone https://github.com/JPlanken/claude-usage-bar.git
+cd claude-usage-bar
+npm install
+npm run install-local    # packages a .vsix and installs it with whatever `code` is on your PATH
+```
+
+Then reload the window (`Developer: Reload Window`). Requires a Claude Pro or Max login in Claude Code on the same machine; the extension reuses that login and never asks for credentials.
 
 ## Settings
 
