@@ -1,5 +1,5 @@
 {
-  "name": "claude-usage-bar",
+  "name": "claude-plan-usage",
   "displayName": "Claude Usage Bar",
   "description": "Shows Claude plan usage (5-hour session, weekly all models, weekly per-model) in the VS Code status bar.",
   "version": "0.2.0",
@@ -107,8 +107,8 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "package": "npm run compile && vsce package --no-dependencies",
-    "install-local": "npm run package && code --install-extension claude-usage-bar-0.2.0.vsix --force",
-    "install-vscode": "npm run package && \"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --install-extension claude-usage-bar-0.2.0.vsix --force"
+    "install-local": "npm run package && code --install-extension claude-plan-usage-0.2.0.vsix --force",
+    "install-vscode": "npm run package && \"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --install-extension claude-plan-usage-0.2.0.vsix --force"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

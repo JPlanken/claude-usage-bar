@@ -24,7 +24,7 @@
 From the Marketplace: search for **Claude Usage Bar** in the Extensions view, or run
 
 ```
-ext install planken.claude-usage-bar
+ext install planken.claude-plan-usage
 ```
 
 From source:
