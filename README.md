@@ -63,7 +63,21 @@ Commands: `Claude Usage: Refresh`, `Claude Usage: Open Usage Page`.
 
 ## Publishing
 
-### VS Code Marketplace (one-time setup)
+Names are global on the Marketplace: both the package `name` and the `displayName` must be unused by every other publisher. Check candidates with the extension query API before renaming.
+
+### Manual upload (no token needed)
+
+The publisher portal accepts a `.vsix` directly. This is how 0.2.0 was published.
+
+1. `npx vsce package --no-dependencies`
+2. Open [marketplace.visualstudio.com/manage/publishers/planken](https://marketplace.visualstudio.com/manage/publishers/planken), New extension, Visual Studio Code, drop the `.vsix`, Upload.
+3. The listing shows "Verifying" for a few minutes, then goes live at [marketplace.visualstudio.com/items?itemName=planken.claude-plan-usage](https://marketplace.visualstudio.com/items?itemName=planken.claude-plan-usage).
+
+### Automated publishing (token needed)
+
+Only needed for the CI workflow. Note that creating a new Azure DevOps organisation now requires an Azure subscription, and Personal Access Tokens are retired on 1 December 2026; `vsce publish --azure-credential` with Entra ID is the replacement.
+
+#### VS Code Marketplace (one-time setup)
 
 1. Sign in at [Azure DevOps](https://dev.azure.com) with a Microsoft account and create an organisation if you have none. The Marketplace uses Azure DevOps for authentication only.
 2. Create a Personal Access Token: user menu, Personal access tokens, New token. Organisation: **All accessible organizations**. Scopes: **Marketplace: Manage**. Store it in Doppler with `doppler secrets set VSCE_PAT` from the repo root (bound to `claude-usage-bar/prd`), never in the repo.
