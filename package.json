@@ -2,7 +2,7 @@
   "name": "claude-plan-usage",
   "displayName": "Claude Plan Usage",
   "description": "Shows Claude plan usage (5-hour session, weekly all models, weekly per-model) in the VS Code status bar.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "planken",
   "license": "MIT",
   "engines": {
@@ -106,9 +106,9 @@
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "npm run compile && vsce package --no-dependencies",
-    "install-local": "npm run package && code --install-extension claude-plan-usage-0.2.0.vsix --force",
-    "install-vscode": "npm run package && \"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --install-extension claude-plan-usage-0.2.0.vsix --force"
+    "package": "npm run compile && vsce package --no-dependencies -o claude-plan-usage.vsix",
+    "install-local": "npm run package && code --install-extension claude-plan-usage.vsix --force",
+    "install-vscode": "npm run package && \"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code\" --install-extension claude-plan-usage.vsix --force"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",

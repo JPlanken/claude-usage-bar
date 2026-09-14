@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+
+- README describes the published Marketplace extension and the release procedure
+
 ## 0.2.0
 
 - Explorer sidebar section with progress bars per limit, reset times, refresh and open-page buttons
