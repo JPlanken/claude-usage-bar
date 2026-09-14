@@ -1,6 +1,6 @@
 {
   "name": "claude-plan-usage",
-  "displayName": "Claude Usage Bar",
+  "displayName": "Claude Plan Usage",
   "description": "Shows Claude plan usage (5-hour session, weekly all models, weekly per-model) in the VS Code status bar.",
   "version": "0.2.0",
   "publisher": "planken",

@@ -1,4 +1,4 @@
-# Claude Usage Bar
+# Claude Plan Usage
 
 > **Agent Onboarding**
 > Private VS Code extension that shows Claude plan usage in the status bar. One source file, `src/extension.ts`. It reads the Claude Code OAuth token from the macOS Keychain (item "Claude Code-credentials", fallback `~/.claude/.credentials.json`), polls the undocumented usage endpoint that claude.ai's settings page uses, and renders the session, weekly and per-model limits. Not published to the Marketplace; installed from a local `.vsix`.
@@ -21,7 +21,7 @@
 
 ## Install
 
-From the Marketplace: search for **Claude Usage Bar** in the Extensions view, or run
+From the Marketplace: search for **Claude Plan Usage** in the Extensions view, or run
 
 ```
 ext install planken.claude-plan-usage
